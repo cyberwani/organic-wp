@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+  <div class="uk-section uk-container uk-container-large">
+    {% do action('woocommerce_before_single_product') %}
+  </div>
+
+  <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
+
+    <div class="entry-images uk-section uk-container uk-container-large">
+      
+        {% do action('woocommerce_before_single_product_summary') %}
+
+        <img src="{{ post.thumbnail.src('shop_single') }}" />
+        
+    </div>
+
+    <div class="summary entry-summary uk-section uk-container uk-container-large uk-section-muted product-summary">
+      {% do action('woocommerce_single_product_summary') %}
+    </div>
+
+    <div class="uk-section uk-container uk-container-large after-product-summary">
+      {% do action('woocommerce_after_single_product_summary') %}
+    </div>
+
+    <div class="uk-section uk-container uk-container-large some-meta">
+      <meta itemprop="url" content="{{ post.link }}" />
+    </div>
+
+  </article>
+
+  <div class="uk-section uk-container uk-container-large related-products">
+    <div class="uk-child-width-1-4" uk-grid> 
+      {% include ["tease-product.twig"] with { products: related_products } %}
+    </div>
+  </div>
+
+  <div class="uk-section uk-container uk-container-large after-single-product">
+    {% do action('woocommerce_after_single_product') %}
+  </div>
+
+{% endblock  %}

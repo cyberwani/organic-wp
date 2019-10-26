@@ -1,0 +1,25 @@
+<!--HEADER-->
+<header id="HeaderBottom" class="uk-background-primary" style="
+border-top: 1px solid #1f7b58;transition:top 0.4s linear;" uk-sticky="offset: 80;bottom: .uk-article-title">
+  <div class="uk-container uk-container-large boundary-align">
+    <nav id="MainNav" class="uk-navbar-container uk-navbar-transparent" style="margin-left: -10px;" uk-navbar="boundary: .boundary-align; boundary-align: true">
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+              
+              {% set drop_icon = '<span uk-icon="triangle-down"></span>' %}
+              {% set padding_right10 = 'padding-right:10px;' %}
+          
+              {% if has_menu_main %}
+                {% for item in menu_main.get_items %}
+                
+                <li class="{{ item.classes | join(' ') }}"><a title="{{ item.title }}" style="{% if item.mega_menu_html %}{{ padding_right10 }}{% endif %}" href="{{ item.get_link }}">{{ item.title }}{% if item.mega_menu_html %}{{ drop_icon }}{% endif %}</a>{{ item.mega_menu_html }}</li>
+                
+                {% endfor %}
+              {% endif %}
+                              
+            </ul>
+        </div>
+    </nav>
+  </div>
+</header>
+<!--/HEADER-->

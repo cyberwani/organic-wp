@@ -1,8 +1,8 @@
 <?php
 /**
- * Starter Theme functions and definitions
+ * Organic Theme functions and definitions
  *
- * @package Starter_Theme
+ * @package Organic_Theme
  */
 
 /**
@@ -16,6 +16,20 @@ require get_template_directory() . '/inc/theme-functions.php';
 if( class_exists( 'Timber' ) ) {
 	require get_template_directory() . '/inc/timber-functions.php';
 }
+
+
+function timber_set_product( $post ) {
+    global $product;
+
+    if ( is_woocommerce() ) {
+        $product = wc_get_product( $post->ID );
+    }
+}
+
+/**
+ * Woo functions
+ */
+require get_template_directory() . '/inc/woo-functions.php';
 
 /**
 * Custom Widget

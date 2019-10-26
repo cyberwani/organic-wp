@@ -2,7 +2,7 @@
 /**
  * Timber theme class & other functions for Twig.
  *
- * @package Starter_Theme
+ * @package Organic_Theme
  */
 
 // Define paths to Twig templates
@@ -13,10 +13,11 @@ Timber::$dirname = array(
   'views/singular',
   'views/header',
   'views/footer',
+  'views/woo',
 );
 
-// Define Starter_Theme Child Class
-class StarterTheme extends TimberSite
+// Define Organic_Theme Child Class
+class OrganicTheme extends TimberSite
 {
     public function __construct()
     {
@@ -47,27 +48,90 @@ class StarterTheme extends TimberSite
         // Register widget areas
         if (function_exists('register_sidebar')) {
           register_sidebar(array(
-              'name' => esc_html__('Left Sidebar Area', 'starter-theme'),
+              'name' => esc_html__('Left Sidebar Area', 'organic-theme'),
               'id' => 'sidebar-left',
-              'description' => esc_html__('Sidebar Area for Left Sidebar Templates, you can add multiple widgets here.', 'starter-theme'),
+              'description' => esc_html__('Sidebar Area for Left Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
               'before_widget' => '',
               'after_widget' => '',
               'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
               'after_title' => '</span></h3>'
           ));
             register_sidebar(array(
-                'name' => esc_html__('Right Sidebar Area', 'starter-theme'),
+                'name' => esc_html__('Right Sidebar Area', 'organic-theme'),
                 'id' => 'sidebar-right',
-                'description' => esc_html__('Sidebar Area for Right Sidebar Templates, you can add multiple widgets here.', 'starter-theme'),
+                'description' => esc_html__('Sidebar Area for Right Sidebar Templates, you can add multiple widgets here.', 'organic-theme'),
                 'before_widget' => '',
                 'after_widget' => '',
                 'before_title' => '<h3 class="uk-text-bold widget-title"><span>',
                 'after_title' => '</span></h3>'
             ));
             register_sidebar(array(
-                'name' => esc_html__('Main Footer Area', 'starter-theme'),
+                'name' => esc_html__('Main Footer Area', 'organic-theme'),
                 'id' => 'sidebar-footer',
-                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'starter-theme'),
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Area 1', 'organic-theme'),
+                'id' => 'sidebar-footer-1',
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Area 2', 'organic-theme'),
+                'id' => 'sidebar-footer-2',
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Area 3', 'organic-theme'),
+                'id' => 'sidebar-footer-3',
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Area 4', 'organic-theme'),
+                'id' => 'sidebar-footer-4',
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Area 5', 'organic-theme'),
+                'id' => 'sidebar-footer-5',
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="uk-text-bold uk-text-muted widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Bottom Left Area', 'organic-theme'),
+                'id' => 'sidebar-footer-left',
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '<h4 class="widget-title">',
+                'after_title' => '</h4>'
+            ));
+            register_sidebar(array(
+                'name' => esc_html__('Footer Bottom Right Area', 'organic-theme'),
+                'id' => 'sidebar-footer-right',
+                'description' => esc_html__('Main Footer Widget Area; works best with the current widget only.', 'organic-theme'),
                 'before_widget' => '',
                 'after_widget' => '',
                 'before_title' => '<h4 class="widget-title">',
@@ -80,8 +144,8 @@ class StarterTheme extends TimberSite
     {
         // This theme uses wp_nav_menu() in one locations.
         register_nav_menus(array(
-            'main' => __('Main Menu', 'starter-theme'),
-            'mobile' => __('Mobile Menu', 'starter-theme'),
+            'main' => __('Main Menu', 'organic-theme'),
+            'mobile' => __('Mobile Menu', 'organic-theme'),
         ));
     }
 
@@ -90,7 +154,7 @@ class StarterTheme extends TimberSite
     public function add_to_context($context)
     {
       $main_menu_args = array(
-          'depth' => 3,
+          'depth' => 1,
       );
       $context['menu_main'] = new \Timber\Menu( 'main' );
       $context['menu_mobile'] = new \Timber\Menu('mobile');
@@ -103,6 +167,13 @@ class StarterTheme extends TimberSite
       $context['sidebar_left']  = Timber::get_widgets('Left Sidebar Area');
       $context['sidebar_right'] = Timber::get_widgets('Right Sidebar Area');
       $context['sidebar_footer']   = Timber::get_widgets('Main Footer Area');
+      $context['sidebar_footer_1']   = Timber::get_widgets('Footer Area 1');
+      $context['sidebar_footer_2']   = Timber::get_widgets('Footer Area 2');
+      $context['sidebar_footer_3']   = Timber::get_widgets('Footer Area 3');
+      $context['sidebar_footer_4']   = Timber::get_widgets('Footer Area 4');
+      $context['sidebar_footer_5']   = Timber::get_widgets('Footer Area 5');
+      $context['sidebar_footer_left']   = Timber::get_widgets('Footer Bottom Left Area');
+      $context['sidebar_footer_right']   = Timber::get_widgets('Footer Bottom Right Area');
       if ( is_page_template( 'page-templates/no-sidebar-template.php' ) ) {
         $context['article_width_class'] = 'uk-width-1-1';
       } else {
@@ -123,4 +194,4 @@ class StarterTheme extends TimberSite
     }
 }
 
-new StarterTheme();
+new OrganicTheme();

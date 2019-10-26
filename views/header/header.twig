@@ -1,10 +1,21 @@
-<header id="SiteHeader">
-  <div class="uk-container">
-    
-    {% include 'navbar.twig' %}
+    <div>
+      <!--HEADER-->
+      <header id="HeaderTop" class="uk-background-primary" uk-sticky>
+        <div class="uk-container uk-container-large">
+          <nav id="SearchNav" class="uk-navbar-transparent" data-uk-navbar>
+            <div class="uk-navbar-left uk-margin-right uk-light">
+              <a class="uk-navbar-item uk-logo organic-logo uk-text-bold uk-text-emphasis" href="/">Organic</a>
+            </div>
+            
+            {% include 'header-search.twig' %} 
+          
+            {% include 'header-cart.twig' %}
 
-    {% include 'offcanvas.twig' %}
-    
-  </div>
-</header>
-<!-- /header section -->
+          </nav>
+        </div>
+      </header>
+      <!--/HEADER-->
+      
+      {% include 'header-bottom.twig' %}
+      
+    </div>

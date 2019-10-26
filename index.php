@@ -2,7 +2,7 @@
 /**
  * The main template file
  *
- * @package Starter_Theme
+ * @package Organic_Theme
  */
 
 $context = Timber::get_context();
