@@ -9,6 +9,7 @@ if ( ! class_exists( 'Timber' ) ) {
 $context            = Timber::context();
 $context['sidebar'] = Timber::get_widgets( 'shop-sidebar' );
 
+
 if ( is_singular( 'product' ) ) {
     $context['post']    = Timber::get_post();
     $product            = wc_get_product( $context['post']->ID );
@@ -32,7 +33,11 @@ if ( is_singular( 'product' ) ) {
         $term_id = $queried_object->term_id;
         $context['category'] = get_term( $term_id, 'product_cat' );
         $context['title'] = single_term_title( '', false );
-    }
+    };
+    
+    if ( is_shop() ) {
+      $context['title'] = 'Shop';
+    };
 
     Timber::render( 'views/woo/archive.twig', $context );
 }

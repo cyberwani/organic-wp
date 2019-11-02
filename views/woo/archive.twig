@@ -2,42 +2,55 @@
 
 {% block content %}
 
-<div class="uk-container uk-container-large uk-section">
+<div class="uk-section uk-section-small" data-template="archive.twig">
+  <div class="uk-container uk-container-large">
+    <div class="uk-grid-large" uk-grid>
+			
+			{% include 'sidebar-shop.twig' %}
 
-	<div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
-    <h4>Before Main Content Start</h4>
-    {% do action('woocommerce_before_main_content') %}
-    <h4>Before Main Content End</h4>
-  </div>
+      <div id="MainProductArchive" class="uk-article uk-width-5-6@m">
 
-  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
-    <h4>Before Shop Loop Start</h4>
-    {% do action('woocommerce_before_shop_loop') %}
-    <h4>Before Shop Loop End</h4>
-  </div>
+				<div class="products-archive">
 
-  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
-    <h4>The Product Loop Start</h4>
-    <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid="masonry: true">
-      {% for post in products %}
-        {% include ["tease-product.twig"] %}
-      {% endfor %}
+					<div class="breadcrumbs-section uk-margin-bottom">
+				    {% do action('woocommerce_before_main_content') %}
+				  </div>
+					
+					<h1 class="uk-article-title">{{title}}</h1>
+
+          <h4>The Product Toolbar</h4>
+				  <div class="uk-section uk-section-muted uk-padding-small uk-section-small uk-margin-bottom">
+            <div class="uk-flex-middle" uk-grid>
+				          {% do action('woocommerce_before_shop_loop') %}
+				    </div>
+          </div>
+
+				  <div class="uk-margin-bottom">
+				    <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid="masonry: true">
+				      {% for post in products %}
+				        {% include ["tease-product.twig"] %}
+				      {% endfor %}
+				    </div>
+				  </div>
+
+				  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+				    <h4>After Shop Loop Start</h4>
+				    {% do action('woocommerce_after_shop_loop') %}
+				    <h4>After Shop Loop End</h4>
+				  </div>
+				  
+				  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+				    <h4>After Main Content Start</h4>
+				    {% do action('woocommerce_after_main_content') %}
+				    <h4>After Main Content End</h4>
+				  </div>
+				  
+				</div>
+
+      </div>
+
     </div>
-    <h4>The Product Loop End</h4>
   </div>
-
-  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
-    <h4>After Shop Loop Start</h4>
-    {% do action('woocommerce_after_shop_loop') %}
-    <h4>After Shop Loop End</h4>
-  </div>
-  
-  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
-    <h4>After Main Content Start</h4>
-    {% do action('woocommerce_after_main_content') %}
-    <h4>After Main Content End</h4>
-  </div>
-  
 </div>
 
 {% endblock  %}
