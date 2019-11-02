@@ -42,6 +42,7 @@ function organic_theme_setup()
 
   // add custom thumbs sizes.
   add_image_size('organic-theme-featured-image-archive', 800, 300, true);
+  add_image_size('organic-theme-cart-image', 80, 80, true);
   
   add_theme_support( 'woocommerce' );
   

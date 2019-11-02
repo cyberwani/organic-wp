@@ -2,23 +2,42 @@
 
 {% block content %}
 
-<div class="uk-container uk-section">
+<div class="uk-container uk-container-large uk-section">
 
+	<div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>Before Main Content Start</h4>
     {% do action('woocommerce_before_main_content') %}
+    <h4>Before Main Content End</h4>
+  </div>
 
-    <div class="before-shop-loop uk-margin-bottom">
-        {% do action('woocommerce_before_shop_loop') %}
+  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>Before Shop Loop Start</h4>
+    {% do action('woocommerce_before_shop_loop') %}
+    <h4>Before Shop Loop End</h4>
+  </div>
+
+  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>The Product Loop Start</h4>
+    <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid="masonry: true">
+      {% for post in products %}
+        {% include ["tease-product.twig"] %}
+      {% endfor %}
     </div>
+    <h4>The Product Loop End</h4>
+  </div>
 
-    <div class="loop uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid="masonry: true">
-        {% for post in products %}
-            {% include ["tease-product.twig"] %}
-        {% endfor %}
-    </div>
-
+  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>After Shop Loop Start</h4>
     {% do action('woocommerce_after_shop_loop') %}
+    <h4>After Shop Loop End</h4>
+  </div>
+  
+  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>After Main Content Start</h4>
     {% do action('woocommerce_after_main_content') %}
-
+    <h4>After Main Content End</h4>
+  </div>
+  
 </div>
 
 {% endblock  %}

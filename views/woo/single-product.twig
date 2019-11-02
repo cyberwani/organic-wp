@@ -2,42 +2,58 @@
 
 {% block content %}
 
-  <div class="uk-section uk-container uk-container-large">
+<div class="uk-container uk-container-large uk-section">
+
+  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>Before Single Product Start</h4>
     {% do action('woocommerce_before_single_product') %}
   </div>
 
   <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
 
-    <div class="entry-images uk-section uk-container uk-container-large">
+    <div class="entry-images">
       
+      <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+        <h4>Before Single Product Summary Start</h4>
         {% do action('woocommerce_before_single_product_summary') %}
-
+      </div>
+      
+      <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+        <h4>Post Thumbnail Twig</h4>
         <img src="{{ post.thumbnail.src('shop_single') }}" />
+      </div>
         
     </div>
 
-    <div class="summary entry-summary uk-section uk-container uk-container-large uk-section-muted product-summary">
+    <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+      <h4>Before Single Product Summary Start</h4>
       {% do action('woocommerce_single_product_summary') %}
     </div>
 
-    <div class="uk-section uk-container uk-container-large after-product-summary">
+    <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+      <h4>After Single Product Summary Start</h4>
       {% do action('woocommerce_after_single_product_summary') %}
     </div>
 
-    <div class="uk-section uk-container uk-container-large some-meta">
+    <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+      <h4>Some Link?</h4>
       <meta itemprop="url" content="{{ post.link }}" />
     </div>
 
   </article>
 
-  <div class="uk-section uk-container uk-container-large related-products">
+  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>Related Products</h4>
     <div class="uk-child-width-1-4" uk-grid> 
       {% include ["tease-product.twig"] with { products: related_products } %}
     </div>
   </div>
 
-  <div class="uk-section uk-container uk-container-large after-single-product">
+  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
+    <h4>After Single Product Start</h4>
     {% do action('woocommerce_after_single_product') %}
   </div>
+  
+</div>
 
 {% endblock  %}
