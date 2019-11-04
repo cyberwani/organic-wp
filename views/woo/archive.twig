@@ -12,19 +12,22 @@
 
 				<div class="products-archive">
 
-					<div class="breadcrumbs-section uk-margin-bottom">
+					<div class="breadcrumbs-notices-section uk-margin-bottom">
 				    {% do action('woocommerce_before_main_content') %}
+            <!-- <p class="uk-text-meta">breadcrumbs & notices hooked in here, removed wrapper. see woo-functions.php</p> -->
 				  </div>
 					
 					<h1 class="uk-article-title">{{title}}</h1>
+          <!-- <p class="uk-text-meta">the archive title</p> -->
 
-          <h4>The Product Toolbar</h4>
+          <!-- <p class="uk-text-meta">the product toolbar - before_shop_loop hook actions changed, notices removed. see woo-functions.php</p> -->
 				  <div class="uk-section uk-section-muted uk-padding-small uk-section-small uk-margin-bottom">
             <div class="uk-flex-middle" uk-grid>
-				          {% do action('woocommerce_before_shop_loop') %}
+				       {% do action('woocommerce_before_shop_loop') %}
 				    </div>
           </div>
 
+          <!-- <p class="uk-text-meta">the archive loop via twig, using tease-product.twig in uikit grid</p> -->
 				  <div class="uk-margin-bottom">
 				    <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid="masonry: true">
 				      {% for post in products %}
@@ -33,17 +36,11 @@
 				    </div>
 				  </div>
 
-				  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
-				    <h4>After Shop Loop Start</h4>
+				  <div class="">
 				    {% do action('woocommerce_after_shop_loop') %}
-				    <h4>After Shop Loop End</h4>
 				  </div>
 				  
-				  <div class="uk-section uk-section-muted uk-section-small uk-padding uk-margin-bottom">
-				    <h4>After Main Content Start</h4>
-				    {% do action('woocommerce_after_main_content') %}
-				    <h4>After Main Content End</h4>
-				  </div>
+				  <!-- {% do action('woocommerce_after_main_content') %} -->
 				  
 				</div>
 
