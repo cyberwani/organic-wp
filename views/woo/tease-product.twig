@@ -1,39 +1,38 @@
-<div>
+<div {{ fn('post_class', ['entry'] ) }}>
   <div class="uk-card uk-card-default">
 
       {{ fn('timber_set_product', post) }}
-
-          {% if showthumb %}
+          
               <div class="media-figure uk-card-media-top {% if not post.thumbnail %}placeholder{% endif %}">
                   <a href="{{ post.link }}">
                       {% if post.thumbnail %}
-                          <img src="{{ post.thumbnail.src|resize(post_thumb_size[0], post_thumb_size[1]) }}" />
+                          <img data-src="{{ post.thumbnail.src('organic-theme-quickview') }}" uk-img>
                       {% else %}
                           <span class="thumb-placeholder"><i class="icon-camera"></i></span>
                       {% endif %}
                   </a>
               </div>
-          {% endif %}
-          
-          <div class="uk-card-media-top">
-            {% if post.thumbnail %}
-              <img src="{{ post.thumbnail.src }}" />
-            {% endif %}
-          </div>
 
           <div class="uk-card-body uk-padding-small">
 
-              {% do action('woocommerce_before_shop_loop_item_title') %}
+            {% do action('woocommerce_before_shop_loop_item_title') %}
+            
+            <!-- {% do action('woocommerce_shop_loop_item_title') %} -->
 
-              {% if post.title %}
-                  <span class="entry-title uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ post.title }}</a></span>
-              {% else %}
-                  <span class="entry-title uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ fn('the_title') }}</a></span>
-              {% endif %}
+            {% if post.title %}
+                <span class="entry-title uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ post.title }}</a></span>
+            {% else %}
+                <span class="entry-title uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ fn('the_title') }}</a></span>
+            {% endif %}
 
-              {% do action( 'woocommerce_after_shop_loop_item_title' ) %}
-              {% do action( 'woocommerce_after_shop_loop_item' ) %}
+            <hr>
 
+            {% do action( 'woocommerce_after_shop_loop_item_title' ) %}
+            
+            <hr>
+            
+            {% do action( 'woocommerce_after_shop_loop_item' ) %}
+            
           </div>
 
   </div>

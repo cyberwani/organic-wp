@@ -42,11 +42,14 @@ function organic_theme_setup()
 
   // add custom thumbs sizes.
   add_image_size('organic-theme-featured-image-archive', 800, 300, true);
+  add_image_size('organic-theme-woocommerce', 600, 600, true);
+  add_image_size('organic-theme-quickview', 400, 400, true);
   add_image_size('organic-theme-cart-image', 80, 80, true);
   
   add_theme_support( 'woocommerce' );
-  
-  add_filter('woocommerce_enqueue_styles', '__return_false');
+  add_theme_support( 'wc-product-gallery-zoom' );
+  add_theme_support( 'wc-product-gallery-lightbox' );
+  add_theme_support( 'wc-product-gallery-slider' );
   
 }
 add_action('after_setup_theme', 'organic_theme_setup');

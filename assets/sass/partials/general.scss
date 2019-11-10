@@ -1,8 +1,70 @@
 /* theme borders */
-.theme-border, .theme-border-top, .theme-border-right, .theme-border-bottom, .theme-border-left {
+.theme-border {
    border: $theme_border
+}
+.theme-border-top {
+   border-top: $theme_border
+}
+.theme-border-bottom {
+   border-bottom: $theme_border
+}
+.theme-border-left {
+   border-left: $theme_border
+}
+.theme-border-right {
+   border-right: $theme_border
+}
+
+.theme-border-solid {
+   border: $theme_solid_border
+}
+.theme-border-solid-top {
+   border-top: $theme_solid_border
+}
+.theme-border-solid-bottom {
+   border-bottom: $theme_solid_border
+}
+.theme-border-solid-left {
+   border-left: $theme_solid_border
+}
+.theme-border-solid-right {
+   border-right: $theme_solid_border
 }
 /* logo height */
 // .uk-logo>img {
 //   height: 30px;
 // }
+
+/* woo */
+a.added_to_cart.wc-forward {
+  display: none;
+}
+
+#ToolbarPagination {
+  .page-number {
+      background-color: #eee;
+      padding: 5px 15px;
+      border-radius: 100px;
+  }
+  .page-number.current {
+      background-color: #299169;
+      color: #fff;
+  }
+  .next {
+      padding: 4px;
+  }
+}
+
+.product-accordion {
+  padding-top: 10px;
+  
+  .product-accordion-item { 
+    padding-bottom:10px
+  }
+  
+}
+.product-accordion>:nth-child(n+2) {
+    margin-top: 10px;
+}
+
+

@@ -20,7 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<h3 class="uk-width-auto">Sort by:</h3>
 <form class="woocommerce-ordering" method="get">
 	<select name="orderby" class="orderby uk-select" aria-label="<?php esc_attr_e( 'Shop order', 'woocommerce' ); ?>">
 		<?php foreach ( $catalog_orderby_options as $id => $name ) : ?>

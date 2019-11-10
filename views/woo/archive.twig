@@ -21,7 +21,7 @@
           <!-- <p class="uk-text-meta">the archive title</p> -->
 
           <!-- <p class="uk-text-meta">the product toolbar - before_shop_loop hook actions changed, notices removed. see woo-functions.php</p> -->
-				  <div class="uk-section uk-section-muted uk-padding-small uk-section-small uk-margin-bottom">
+				  <div id="ShopToolbar" class="uk-section uk-section-muted uk-padding-small uk-section-small uk-margin-bottom">
             <div class="uk-flex-middle" uk-grid>
 				       {% do action('woocommerce_before_shop_loop') %}
 				    </div>
@@ -40,7 +40,7 @@
 				    {% do action('woocommerce_after_shop_loop') %}
 				  </div>
 				  
-				  <!-- {% do action('woocommerce_after_main_content') %} -->
+				  {% do action('woocommerce_after_main_content') %}
 				  
 				</div>
 
