@@ -68,3 +68,9 @@ a.added_to_cart.wc-forward {
 }
 
 
+#LoopAddToCart {
+  .uk-button {
+      padding: 0;
+      text-transform: capitalize;
+  }
+}

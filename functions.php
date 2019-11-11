@@ -5,6 +5,14 @@
  * @package Organic_Theme
  */
 
+ function timber_set_product( $post ) {
+     global $product;
+ 
+     if ( is_woocommerce() ) {
+         $product = wc_get_product( $post->ID );
+     }
+ }
+
 /**
 * Theme functions
 */
@@ -15,15 +23,6 @@ require get_template_directory() . '/inc/theme-functions.php';
 */
 if( class_exists( 'Timber' ) ) {
 	require get_template_directory() . '/inc/timber-functions.php';
-}
-
-
-function timber_set_product( $post ) {
-    global $product;
-
-    if ( is_woocommerce() ) {
-        $product = wc_get_product( $post->ID );
-    }
 }
 
 /**

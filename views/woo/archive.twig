@@ -2,48 +2,54 @@
 
 {% block content %}
 
-<div class="uk-section uk-section-small" data-template="archive.twig">
+<div class="uk-section uk-section-small" data-template="woo-archive.twig">
   <div class="uk-container uk-container-large">
     <div class="uk-grid-large" uk-grid>
 			
 			{% include 'sidebar-shop.twig' %}
 
       <div id="MainProductArchive" class="uk-article uk-width-5-6@m">
+				<div>
 
-				<div class="products-archive">
-
-					<div class="breadcrumbs-notices-section uk-margin-bottom">
+					<div id="ShopBreadsNotices" class="uk-margin-bottom">
 				    {% do action('woocommerce_before_main_content') %}
-            <!-- <p class="uk-text-meta">breadcrumbs & notices hooked in here, removed wrapper. see woo-functions.php</p> -->
 				  </div>
 					
-					<h1 class="uk-article-title">{{title}}</h1>
-          <!-- <p class="uk-text-meta">the archive title</p> -->
-
-          <!-- <p class="uk-text-meta">the product toolbar - before_shop_loop hook actions changed, notices removed. see woo-functions.php</p> -->
+					<h1 id="ShopArchiveTitle" class="uk-article-title">{{ title }}</h1>
+          
 				  <div id="ShopToolbar" class="uk-section uk-section-muted uk-padding-small uk-section-small uk-margin-bottom">
             <div class="uk-flex-middle" uk-grid>
-				       {% do action('woocommerce_before_shop_loop') %}
+				      {% do action('woocommerce_before_shop_loop') %}
+              {% do action('grid_list_buttons') %}
 				    </div>
           </div>
 
-          <!-- <p class="uk-text-meta">the archive loop via twig, using tease-product.twig in uikit grid</p> -->
-				  <div class="uk-margin-bottom">
-				    <div class="uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid="masonry: true">
+				  <div id="ShopProducts" class="uk-margin-bottom">
+            {% if grid_list == 'list-view' %}
+              {% set grid_list_layout_class = 'uk-child-width-1-1@m' %}
+            {% elseif grid_list == 'grid-view' or grid_list == '' %}
+              {% set grid_list_layout_class = 'uk-child-width-1-4@m' %}
+            {% endif %}
+				    <div id="ProductGrid" class="uk-child-width-1-1@s {{ grid_list_layout_class }}" uk-grid="masonry: true">
 				      {% for post in products %}
-				        {% include ["tease-product.twig"] %}
+                {% if grid_list == 'list-view' %}
+  				        {% include ["tease-product-list.twig"] %}
+                {% elseif grid_list == 'grid-view' %}
+                  {% include ["tease-product.twig"] %}
+                {% else %}
+                  {% include ["tease-product.twig"] %}
+                {% endif %}
 				      {% endfor %}
 				    </div>
 				  </div>
 
-				  <div class="">
+				  <div id="ShopPagination">
 				    {% do action('woocommerce_after_shop_loop') %}
 				  </div>
 				  
 				  {% do action('woocommerce_after_main_content') %}
 				  
 				</div>
-
       </div>
 
     </div>

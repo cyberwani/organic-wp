@@ -44,6 +44,7 @@ function organic_theme_setup()
   add_image_size('organic-theme-featured-image-archive', 800, 300, true);
   add_image_size('organic-theme-woocommerce', 600, 600, true);
   add_image_size('organic-theme-quickview', 400, 400, true);
+  add_image_size('organic-theme-woo-archive-grid', 260, 260, true);
   add_image_size('organic-theme-cart-image', 80, 80, true);
   
   add_theme_support( 'woocommerce' );
@@ -54,6 +55,7 @@ function organic_theme_setup()
 }
 add_action('after_setup_theme', 'organic_theme_setup');
 
+// theme assets
 function organic_theme_enqueue_assets() {
   
   wp_enqueue_style('organic-theme-css', get_template_directory_uri() . '/assets/css/base.css');
@@ -63,6 +65,12 @@ function organic_theme_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'organic_theme_enqueue_assets'); 
 
+// add custom url paramater key
+function custom_query_vars_filter($vars) {
+  $vars[] .= 'grid_list';
+  return $vars;
+}
+add_filter( 'query_vars', 'custom_query_vars_filter' );
 
 // regisers custom widget
 function organic_custom_uikit_widgets_init() {

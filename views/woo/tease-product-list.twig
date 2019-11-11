@@ -1,12 +1,13 @@
-<div id="TheProductItem" {{ fn('post_class', ['entry', 'grid-item'] ) }}>
+<div id="ProductItem" {{ fn('post_class', ['entry', 'list-item'] ) }}>
   {{ fn('timber_set_product', post) }}
-  <div class="uk-card uk-card-default">
+  <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
     
     {% do action('woocommerce_before_shop_loop_item') %}
-          
-    <div id="ProductMedia" class="media-figure uk-card-media-top">
+        
+    <div id="ProductMedia" class="uk-width-1-4 uk-card-media-left uk-cover-container">
       <a href="{{ post.link }}">
-        <img data-src="{{ post.thumbnail.src('organic-theme-woo-archive-grid') }}" alt="{{ post.thumbnail.alt }}" uk-img>
+        <img data-src="{{ post.thumbnail.src('organic-theme-quickview') }}" alt="{{ post.thumbnail.alt }}" uk-cover uk-img>
+        <canvas width="290" height="290"></canvas>
       </a>
       {% do action('woocommerce_before_shop_loop_item_title') %}
     </div>
@@ -18,16 +19,14 @@
         <h3 class="uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ post.title }}</a></h3>
       </div>
 
-      <div>
+      <div class="uk-margin-small-bottom">
         {% do action( 'woocommerce_after_shop_loop_item_title' ) %}
       </div>
       
-    </div>
-    
-    <div class="uk-card-footer uk-padding-small">
-      <div id="LoopAddToCart" class="uk-child-width-1-2 uk-grid-small" uk-grid>
+      <div>
         {% do action( 'woocommerce_after_shop_loop_item' ) %}
       </div>
+      
     </div>
 
   </div>
