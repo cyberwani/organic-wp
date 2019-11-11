@@ -1,96 +1,90 @@
-      <!--FOOTER-->
-      <footer class="uk-section uk-section-small uk-section-muted">
-        
-        <div class="uk-container uk-container-large">
-          
-          <div class="uk-child-width-1-2@s uk-child-width-1-5@m" uk-grid>
-            <div>
-            {% if sidebar_footer_1 %}
-            	{{ sidebar_footer_1 }}
-            {% else %}
-            <h3 class="uk-text-bold uk-text-muted widget-title">Footer 1</h3>
-            <p>Add some widgets to the Footer Widget Area 1</p>
-            {% endif %}
-            </div>
-            <div>
-              {% if sidebar_footer_2 %}
-              	{{ sidebar_footer_2 }}
-              {% else %}
-              <h3 class="uk-text-bold uk-text-muted widget-title">Footer 2</h3>
-              <p>Add some widgets to the Footer Widget Area 2</p>
-              {% endif %}
-            </div>
-            <div>
-              {% if sidebar_footer_3 %}
-              	{{ sidebar_footer_3 }}
-              {% else %}
-              <h3 class="uk-text-bold uk-text-muted widget-title">Footer 3</h3>
-              <p>Add some widgets to the Footer Widget Area 3</p>
-              {% endif %}
-            </div>
-            <div>
-              {% if sidebar_footer_4 %}
-              	{{ sidebar_footer_4 }}
-              {% else %}
-              <h3 class="uk-text-bold uk-text-muted widget-title">Footer 4</h3>
-              <p>Add some widgets to the Footer Widget Area 4</p>
-              {% endif %}
-            </div>
-            <div>
-              {% if sidebar_footer_5 %}
-              	{{ sidebar_footer_5 }}
-              {% else %}
-              <h3 class="uk-text-bold uk-text-muted widget-title">Footer 5</h3>
-              <p>Add some widgets to the Footer Widget Area 5</p>
-              {% endif %}
-            </div>
-          </div>
-          
-          <div class="uk-margin-large-top">
-            <div class="uk-grid-collapse" uk-grid>
-              <div id="FooterBottomLeft" class="uk-width-1-2@m uk-text-small uk-text-center uk-text-left@s">
-                {% if sidebar_footer_left %}
-                	{{ sidebar_footer_left }}
-                {% else %}
-                <p>Add some widgets to the Footer Bottom Left Widget Area</p>
-                {% endif %}
-              </div>
-              <div id="FooterBottomRight" class="uk-width-1-2@m uk-text-small uk-text-center uk-text-right@s">
-                {% if sidebar_footer_right %}
-                	{{ sidebar_footer_right }}
-                {% else %}
-                <p>Add some widgets to the Footer Bottom Right Widget Area</p>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-          
+<!--FOOTER-->
+<footer class="uk-section uk-section-small uk-section-muted">
+  <div class="uk-container uk-container-large">
+    <div class="uk-child-width-1-2@s uk-child-width-1-5@m" uk-grid>
+      <div>
+        {% if sidebar_footer_1 %}
+          {{ sidebar_footer_1 }}
+        {% else %}
+          <h3 class="uk-text-bold uk-text-muted widget-title">Footer 1</h3>
+          <p>Add some widgets to the Footer Widget Area 1</p>
+        {% endif %}
+      </div>
+      <div>
+        {% if sidebar_footer_2 %}
+          {{ sidebar_footer_2 }}
+        {% else %}
+          <h3 class="uk-text-bold uk-text-muted widget-title">Footer 2</h3>
+          <p>Add some widgets to the Footer Widget Area 2</p>
+        {% endif %}
+      </div>
+      <div>
+        {% if sidebar_footer_3 %}
+          {{ sidebar_footer_3 }}
+        {% else %}
+          <h3 class="uk-text-bold uk-text-muted widget-title">Footer 3</h3>
+          <p>Add some widgets to the Footer Widget Area 3</p>
+        {% endif %}
+      </div>
+      <div>
+        {% if sidebar_footer_4 %}
+          {{ sidebar_footer_4 }}
+        {% else %}
+          <h3 class="uk-text-bold uk-text-muted widget-title">Footer 4</h3>
+          <p>Add some widgets to the Footer Widget Area 4</p>
+        {% endif %}
+      </div>
+      <div>
+        {% if sidebar_footer_5 %}
+          {{ sidebar_footer_5 }}
+        {% else %}
+          <h3 class="uk-text-bold uk-text-muted widget-title">Footer 5</h3>
+          <p>Add some widgets to the Footer Widget Area 5</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="uk-margin-large-top">
+      <div class="uk-grid-collapse" uk-grid>
+        <div id="FooterBottomLeft" class="uk-width-1-2@m uk-text-small uk-text-center uk-text-left@s">
+          {% if sidebar_footer_left %}
+            {{ sidebar_footer_left }}
+          {% else %}
+            <p>Add some widgets to the Footer Bottom Left Widget Area</p>
+          {% endif %}
         </div>
-        
-      </footer>
-      <!--/FOOTER-->
-      
-      <!-- OFFCANVAS -->
-      <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
-        <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
-          <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
-          <ul class="uk-nav uk-nav-default">
-            <li class="uk-active"><a href="#">Active</a></li>
-            <li class="uk-parent">
-              <a href="#">Parent</a>
-              <ul class="uk-nav-sub">
-                <li><a href="#">Sub item</a></li>
-                <li><a href="#">Sub item</a></li>
-              </ul>
-            </li>
-            <li class="uk-nav-header">Header</li>
-            <li><a href="#js-options"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: table"></span> Item</a></li>
-            <li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: thumbnails"></span> Item</a></li>
-            <li class="uk-nav-divider"></li>
-            <li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: trash"></span> Item</a></li>
-          </ul>
-          <h3>Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div id="FooterBottomRight" class="uk-width-1-2@m uk-text-small uk-text-center uk-text-right@s">
+          {% if sidebar_footer_right %}
+            {{ sidebar_footer_right }}
+          {% else %}
+            <p>Add some widgets to the Footer Bottom Right Widget Area</p>
+          {% endif %}
         </div>
       </div>
-      <!-- /OFFCANVAS -->
+    </div>
+  </div>
+</footer>
+<!--/FOOTER-->
+<!-- OFFCANVAS -->
+<div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
+  <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+    <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
+    <ul class="uk-nav uk-nav-default">
+      <li class="uk-active"><a href="#">Active</a></li>
+      <li class="uk-parent">
+        <a href="#">Parent</a>
+        <ul class="uk-nav-sub">
+          <li><a href="#">Sub item</a></li>
+          <li><a href="#">Sub item</a></li>
+        </ul>
+      </li>
+      <li class="uk-nav-header">Header</li>
+      <li><a href="#js-options"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: table"></span> Item</a></li>
+      <li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: thumbnails"></span> Item</a></li>
+      <li class="uk-nav-divider"></li>
+      <li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: trash"></span> Item</a></li>
+    </ul>
+    <h3>Title</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+</div>
+<!-- /OFFCANVAS -->

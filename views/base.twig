@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html {{site.language_attributes}}>
-  <head>
+<head>
   <meta charset="{{site.charset}}" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
   <!-- wp header -->
   {{ function('wp_head') }}
   <!-- /wp header -->
-  
   <style>
     h1, h2, h3, h4, h5, h6 {
       font-weight: bold;
@@ -23,27 +21,27 @@
       background-color: rgba(92,92,92,0.05);
     }
     #SearchNav .navbar-extend {
-        position: relative;
-        top: unset;
-        left: unset;
-        transform: none;
-        width: 100%;
+      position: relative;
+      top: unset;
+      left: unset;
+      transform: none;
+      width: 100%;
     }
     .organic-logo {
-      padding: 0 15px 0 0
+      padding: 0 15px 0 0;
     }
     #MainNav .uk-navbar-nav>li>a {
-        min-height: 60px;
-        font-weight: bold;
-        color: #fff;
-        font-size: 1.1rem;
-        text-transform: capitalize;
+      min-height: 60px;
+      font-weight: bold;
+      color: #fff;
+      font-size: 1.1rem;
+      text-transform: capitalize;
     }
     .megamenu {
-        width: 100vw;
-        margin-top: 0;
-        left: 0!important;
-        margin-left: calc(-100vw / 2 + 1420px / 2);
+      width: 100vw;
+      margin-top: 0;
+      left: 0!important;
+      margin-left: calc(-100vw / 2 + 1420px / 2);
     }
     #ShopMegaMenu .uk-list>li>a {
       text-transform: capitalize;
@@ -63,45 +61,36 @@
       color: #299169;
     }
     #LoopAddToCart .uk-button.loading {
-        padding-right: 1.2rem;
+      padding-right: 1.2rem;
     }
   </style>
-  
-  </head>
-  
-  <!-- body classes go here -->
-  <body class="{{ body_class }}" data-template="base.twig">
-
-    <!-- main site wrapper -->
-    <div id="SiteWrapper" class="site-wrapper">
-      
-      <!-- header -->
-      {% block header %}
+</head>
+<!-- body classes go here -->
+<body class="{{ body_class }}" data-template="base.twig">
+  <!-- main site wrapper -->
+  <div id="SiteWrapper" class="site-wrapper">
+    <!-- header -->
+    {% block header %}
       {% include 'header.twig' %}
-      {% endblock %}
-      <!-- /header -->
-    
-      <!-- content -->
-      <div id="MainContent">
-        {% block content %}
+    {% endblock %}
+    <!-- /header -->
+    <!-- content -->
+    <div id="MainContent">
+      {% block content %}
         <p>Sorry, Nothing to Display!!</p>
-        {% endblock %}
-      </div>
-      <!-- /content -->
-
-      <!-- footer -->
-      {% block footer %}
-      {% include 'footer.twig' %}
       {% endblock %}
-      <!-- /footer -->
-
     </div>
-    <!-- /main site wrapper -->
-    
-    <!-- wp footer -->
-    {{ function('wp_footer') }}
-    <!-- /wp footer -->
-    
-  </body>
-  <!-- /body -->
+    <!-- /content -->
+    <!-- footer -->
+    {% block footer %}
+      {% include 'footer.twig' %}
+    {% endblock %}
+    <!-- /footer -->
+  </div>
+  <!-- /main site wrapper -->
+  <!-- wp footer -->
+  {{ function('wp_footer') }}
+  <!-- /wp footer -->
+</body>
+<!-- /body -->
 </html>
