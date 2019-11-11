@@ -1,7 +1,5 @@
-# Wordpress Project Organic
+# Organic WP Theme
 
-A Wordpress project organic theme/process with Timber, UiKit, Sass, Gulp, Webpack & more.
-
-For XAMPP projects.
+Organic Wordpress Theme built using Timber, UiKit, Sass, Gulp, Webpack & more.
 
 ---
