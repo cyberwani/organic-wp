@@ -1,0 +1,57 @@
+{# 
+
+woocommerce_before_shop_loop_item.
+* @hooked woocommerce_template_loop_product_link_open - 10 - REMOVED
+
+woocommerce_before_shop_loop_item_title.
+* @hooked woocommerce_show_product_loop_sale_flash - 10
+* @hooked woocommerce_template_loop_product_thumbnail - 10 - REMOVED: outputting image html using twig instead
+
+woocommerce_shop_loop_item_title - REMOVED: outputting title html using twig instead, weird issue with titles when using default hook
+
+woocommerce_after_shop_loop_item_title - REMOVED: hooked sections being done individually
+* @hooked woocommerce_template_loop_rating - 5
+* @hooked woocommerce_template_loop_price - 10
+
+woocommerce_after_shop_loop_item - REMOVED: hooked sections being done individually (add-to-cart & quickview)
+* @hooked woocommerce_template_loop_product_link_close - 5  - REMOVED
+* @hooked woocommerce_template_loop_add_to_cart - 10
+
+The following parts are gotten individually (sometimes with custom hooks) rather than with default woocommerce hooks:
+
+title
+reviews
+description
+price
+add to cart
+quickview
+
+
+#}
+
+<div id="ProductItem" {{ fn('post_class', ['entry', 'list-item'] ) }}>
+  {{ fn('timber_set_product', post) }}
+  <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
+    {% do action('woocommerce_before_shop_loop_item') %}
+    <div id="ProductMedia" class="uk-width-1-4 uk-card-media-left uk-cover-container">
+      <a href="{{ post.link }}">
+        <img data-src="{{ post.thumbnail.src('organic-theme-quickview') }}" alt="{{ post.thumbnail.alt }}" uk-cover uk-img>
+        <canvas width="290" height="290"></canvas>
+      </a>
+      {% do action('woocommerce_before_shop_loop_item_title') %}
+    </div>
+    <div id="ProductInfo" class="uk-card-body uk-width-expand">
+      <div uk-grid>
+        <div class="uk-width-3-4">
+          {% include 'list-title.twig' %}
+          {% include 'list-rating.twig' %}
+          {% include 'list-description.twig' %}
+        </div>
+        <div class="uk-width-1-4">
+          {% include 'list-price.twig' %}
+          {% include 'list-add-to-cart.twig' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{# 
+
+Actions:
+
+woocommerce_no_products_found - loop-products.twig
+* @hooked wc_no_products_found - 10
+
+#}
+
+<div id="ShopProducts" class="uk-margin-bottom">
+  {% if grid_list == 'list-view' %}
+    {% set grid_list_layout_class = 'uk-child-width-1-1@m' %}
+  {% elseif grid_list == 'grid-view' or grid_list == '' %}
+    {% set grid_list_layout_class = 'uk-child-width-1-4@m' %}
+  {% endif %}
+  <div id="ProductGrid" class="uk-child-width-1-1@s {{ grid_list_layout_class }}" uk-grid="masonry: true">
+    {% for post in products %}
+      {% if grid_list == 'list-view' %}
+        {% include ["tease-product-list.twig"] %}
+      {% elseif grid_list == 'grid-view' %}
+        {% include ["tease-product.twig"] %}
+      {% else %}
+        {% include ["tease-product.twig"] %}
+      {% endif %}
+    {% endfor %}
+    {% if products is empty %}
+      {% do action('woocommerce_no_products_found') %}
+    {% endif %}
+  </div>
+</div>

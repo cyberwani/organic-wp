@@ -1,0 +1,15 @@
+{# 
+
+Actions:
+
+woocommerce_before_main_content
+* @hooked woocommerce_output_content_wrapper - 10 - REMOVED
+* @hooked woocommerce_breadcrumb - 20
+* @hooked WC_Structured_Data::generate_website_data() - 30
+* @HOOKED woocommerce_output_all_notices - 40 - MOVED HERE FROM woocommerce_before_shop_loop
+
+#}
+
+<div id="ShopBreadsNotices" class="uk-margin-bottom">
+  {% do action('woocommerce_before_main_content') %}
+</div>

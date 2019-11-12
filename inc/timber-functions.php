@@ -14,6 +14,11 @@ Timber::$dirname = array(
   'views/header',
   'views/footer',
   'views/woo',
+  'views/woo/archive',
+  'views/woo/single',
+  'views/woo/tease',
+  'views/woo/tease/list',
+
 );
 
 // Define Organic_Theme Child Class

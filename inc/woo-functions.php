@@ -50,10 +50,8 @@
     */
    
    // archive
-   remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 ); // reorder result count in ProductToolbar from 2nd
    remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 ); // reorder catalog in ProductToolbar from 3rd
    add_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 10 ); // reorder catalog in ProductToolbar to 1st
-   add_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 ); // reorder result count in ProductToolbar to 2nd
    
    // tease product
    remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open' ); // remove unnecessary link open html 
@@ -80,23 +78,29 @@
     * Custom Actions
     */
     
-   // add custom loop price
-   function get_custom_loop_price() {
-     get_template_part( 'template-parts/price' );
+   // add list product price
+   function get_list_product_price() {
+     get_template_part( 'template-parts/list-price' );
    }
-   add_action( 'custom_price', 'get_custom_loop_price' );
+   add_action( 'list_product_price', 'get_list_product_price' );
+   
+   // add list product rating
+   function get_list_product_rating() {
+     get_template_part( 'template-parts/list-rating' );
+   }
+   add_action( 'list_product_rating', 'get_list_product_rating' );
+  
+   // add list product add_to_cart
+   function get_list_product_add_to_cart() {
+     get_template_part( 'template-parts/list-add-to-cart' );
+   }
+   add_action( 'list_product_add_to_cart', 'get_list_product_add_to_cart' );
    
    // Add custom mini cart
    function custom_mini_cart() {
      get_template_part( 'template-parts/custom-mini-cart' );
    }
    add_action( 'custom_mini_cart', 'custom_mini_cart' );
-   
-   // Add grid list buttons
-   function grid_list_buttons() {
-     get_template_part( 'template-parts/grid-list-buttons' );
-   }
-   add_action( 'grid_list_buttons', 'grid_list_buttons' );
    
    // ajax result count
    function cart_ajax_result_count() {

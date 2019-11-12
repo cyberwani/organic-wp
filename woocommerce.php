@@ -18,11 +18,10 @@ if ( is_singular( 'product' ) ) {
     // Restore the context and loop back to the main query loop.
     wp_reset_postdata();
 
-    Timber::render( 'views/woo/single-product.twig', $context );
+    Timber::render( 'views/woo/single.twig', $context );
 } else {
     $posts = Timber::get_posts();
     $context['products'] = $posts;
-    
     $context['grid_list'] = get_query_var('grid_list');
 
     if ( is_product_category() ) {

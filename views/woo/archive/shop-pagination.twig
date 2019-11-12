@@ -1,0 +1,11 @@
+{# 
+
+Actions:
+woocommerce_after_shop_loop(shop-pagination.twig)
+* @hooked woocommerce_pagination - 10 -  see loop/pagaintion.php, this template renders default theme pagination.twig
+
+#}
+
+<div id="ShopPagination">
+  {% do action('woocommerce_after_shop_loop') %}
+</div>
