@@ -1,10 +1,15 @@
-<div class="uk-margin-small-bottom">
-  <a class="uk-button uk-button-default uk-width-1-1" href="#modal-center-{{ product.slug }}" uk-toggle>Quick View</a>
-  <div id="modal-center-{{ product.slug }}" class="uk-modal-container" uk-modal>
+{% if grid_list == 'list-view' %}
+  {% set margin_class = 'uk-margin-small-bottom' %}
+{% endif %}
+
+<div class="{{ margin_class }}">
+  <a class="uk-button uk-button-default uk-width-1-1" href="#modal-center-{{ post.slug }}" uk-toggle>Quick View</a>
+  <div id="modal-center-{{ post.slug }}" class="uk-modal-container" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
       <button class="uk-modal-close-default" type="button" uk-close></button>
       <!-- the Product -->
       <div id="TheProduct" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}" uk-grid>
+        
         <!-- the images -->
         <div class="entry-images uk-width-1-2@m">
           <div>

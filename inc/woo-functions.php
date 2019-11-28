@@ -62,6 +62,9 @@
    // single product
    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 ); // remove upsells -TEMPORARY
    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 ); // remove related -TEMPORARY
+   add_action( 'woocommerce_after_single_product', 'woocommerce_upsell_display', 15 ); // remove upsells -TEMPORARY
+   add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_products', 20 ); // remove related -TEMPORARY
+   remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
    
    // cart
    remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' ); // remove cross sells from cart page -TEMPORARY
@@ -72,7 +75,9 @@
    
    // woo notices
    remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 ); // takes notices out of ProductToolbar
+   remove_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 ); // takes notices out of ProductToolbar
    add_action( 'woocommerce_before_main_content', 'woocommerce_output_all_notices', 40 ); // put notices back here, where breadcrumbs are
+   add_action( 'woocommerce_before_main_content', 'wc_print_notices', 50 ); // takes notices out of ProductToolbar
    
    /**
     * Custom Actions
@@ -107,6 +112,44 @@
      get_template_part( 'template-parts/ajax-result-count' );
    }
    add_action( 'cart_ajax_result_count', 'cart_ajax_result_count' );
+   
+   // custom single product sales flash
+   function custom_sales_flash() {
+     get_template_part( 'template-parts/custom-sales-flash' );
+   }
+   add_action( 'custom_sales_flash', 'custom_sales_flash' );
+   
+   // custom 
+   function quick_view() {
+     get_template_part( 'template-parts/quick-view' );
+   }
+   add_action( 'quick_view', 'quick_view' );
+   
+   // custom 
+   function list_quick_view() {
+     get_template_part( 'template-parts/list-quickview' );
+   }
+   add_action( 'list_quick_view', 'list_quick_view' );
+
+   // custom 
+   function quick_view_related() {
+     get_template_part( 'template-parts/quick-view-related' );
+   }
+   add_action( 'quick_view_related', 'quick_view_related' );
+   
+   
+   // custom 
+   function quick_view_rating() {
+     get_template_part( 'template-parts/quickview-rating' );
+   }
+   add_action( 'quick_view_rating', 'quick_view_rating' );
+   
+   // custom 
+   function quick_view_price() {
+     get_template_part( 'template-parts/quickview-price' );
+   }
+   add_action( 'quick_view_price', 'quick_view_price' );
+
 
    /**
     * Using WooCommerce Filters

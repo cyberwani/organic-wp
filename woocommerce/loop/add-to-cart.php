@@ -30,16 +30,6 @@ echo apply_filters( 'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
 		esc_html( $product->add_to_cart_text() )
 	),
 $product, $args ); ?>
-
-<?php
-$context['post']    = Timber::query_post();
-$product            = wc_get_product( $context['post']->ID );
-$context['product'] = $product;
-
-// Restore the context and loop back to the main query loop.
-wp_reset_postdata();
-
-Timber::render(  'quick-view.twig' , $context );
 	
 
 

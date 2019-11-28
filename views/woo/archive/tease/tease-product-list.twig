@@ -42,13 +42,27 @@ quickview
     <div id="ProductInfo" class="uk-card-body uk-width-expand">
       <div uk-grid>
         <div class="uk-width-3-4">
-          {% include 'list-title.twig' %}
-          {% include 'list-rating.twig' %}
-          {% include 'list-description.twig' %}
+
+          <div id="ShopProductTitle" class="uk-margin-small-bottom">
+            <h3 class="uk-card-title"><a class="uk-link-heading" href="{{ post.link }}">{{ post.title }}</a></h3>
+          </div>
+          
+          {% do action('list_product_rating') %}
+
+          <div class="uk-margin-small-bottom">
+            <p>{{ post.preview.read_more('') }}</p>
+            <a href="{{post.link}}" title="Read More" class="">Read More details about this Product</a>
+          </div>
+
         </div>
         <div class="uk-width-1-4">
-          {% include 'list-price.twig' %}
-          {% include 'list-add-to-cart.twig' %}
+          
+          {% do action('list_product_price') %}
+          
+          {% do action('quick_view') %}
+          
+          {% do action('list_product_add_to_cart') %}
+          
         </div>
       </div>
     </div>

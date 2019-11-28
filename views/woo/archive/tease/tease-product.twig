@@ -42,6 +42,7 @@ woocommerce_after_shop_loop_item.
      <div id="ProductButtons" class="uk-card-footer uk-padding-small">
         <div id="LoopAddToCart" class="uk-child-width-1-2 uk-grid-small" uk-grid>
            {% do action( 'woocommerce_after_shop_loop_item' ) %}
+           {% do action( 'quick_view' ) %}
         </div>
      </div>
   </div>

@@ -30,7 +30,7 @@ $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $product_tabs ) ) : ?>
 
-	<div class="uk-card uk-card-primary uk-card-small uk-card-body uk-light">
+	<div class="">
 		<div class="theme-border-top">
 			<ul class="product-accordion uk-margin-remove-bottom" uk-accordion>
 				<?php foreach ( $product_tabs as $key => $product_tab ) : ?>

@@ -14,11 +14,11 @@ if ( is_singular( 'product' ) ) {
     $context['post']    = Timber::get_post();
     $product            = wc_get_product( $context['post']->ID );
     $context['product'] = $product;
-
+    
     // Restore the context and loop back to the main query loop.
     wp_reset_postdata();
 
-    Timber::render( 'views/woo/single.twig', $context );
+    Timber::render( 'views/woo//single/single.twig', $context );
 } else {
     $posts = Timber::get_posts();
     $context['products'] = $posts;
@@ -35,5 +35,5 @@ if ( is_singular( 'product' ) ) {
       $context['title'] = 'Shop';
     };
 
-    Timber::render( 'views/woo/archive.twig', $context );
+    Timber::render( 'views/woo/archive/archive.twig', $context );
 }
