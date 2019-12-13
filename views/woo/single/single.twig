@@ -21,13 +21,17 @@ woocommerce_single_product_summary. content-single-product.php
 * @hooked woocommerce_template_single_sharing - 50
 * @hooked WC_Structured_Data::generate_product_data() - 60
 
-woocommerce_after_single_product_summary.
+woocommerce_after_single_product_summary. content-single-product.php
 * @hooked woocommerce_output_product_data_tabs - 10
 * @hooked woocommerce_upsell_display - 15 MOVED TO woocommerce_after_single_product
 * @hooked woocommerce_output_related_products - 20 MOVED TO woocommerce_after_single_product
 
+woocommerce_after_single_product. content-single-product.php
+* @hooked woocommerce_upsell_display - 10 MOVED TO HERE
+* @hooked woocommerce_output_related_products - 20 MOVED TO HERE
+
 woocommerce_after_main_content hook. single-product.php
-* @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+* @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content) REMOVED
 
 #}
 

@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div class="coupon-box uk-hidden">
+<div class="coupon-box">
 
 <?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
 
@@ -36,47 +36,50 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 
-<form name="checkout" method="post" class="uk-form-stacked checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+<form name="checkout" method="post" class="checkout woocommerce-checkout uk-form-stacked" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+	
+	<div class="form-split uk-child-width-1-2" uk-grid>
 
-	<?php if ( $checkout->get_checkout_fields() ) : ?>
+		<?php if ( $checkout->get_checkout_fields() ) : ?>
+			
+		<div class="customer-crap">
 
-		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+			<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-		<div class="billing-box">
-			<?php do_action( 'woocommerce_checkout_billing' ); ?>
-			<div class="stepped-button-box uk-margin-medium-top">
-				<a class="uk-button uk-button-default" href="/cart">Back to Cart</a>
-				<a class="uk-button uk-button-default" uk-toggle="target: .billing-box, .shipping-box; cls: uk-hidden">Go to Shipping</a>
-			</div>
-		</div>
+			<div id="customer_details">
+				<div>
+					<?php do_action( 'woocommerce_checkout_billing' ); ?>
+				</div>
 
-		<div class="shipping-box uk-hidden">
-			<?php do_action( 'woocommerce_checkout_shipping' ); ?>
-
-			<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
-
-			<div class="stepped-button-box2 uk-margin-medium-top">
-				<a class="uk-button uk-button-default" uk-toggle="target: .billing-box, .shipping-box; cls: uk-hidden">Back</a>
-				<a class="uk-button uk-button-default" uk-toggle="target: .shipping-box, .payment-box, .coupon-box; cls: uk-hidden">Go to Payments</a>
+				<div class="uk-margin-medium-top">
+					<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+				</div>
 			</div>
 
+			<div class="uk-margin-medium-top">
+				<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+			</div>
+		
 		</div>
 
-	<?php endif; ?>
+		<?php endif; ?>
+		
+		<div class="order-review-crap uk-margin-small-top">
+		
+			<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
+			
+			<h3 id="order_review_heading" class="uk-heading-line"><span><?php esc_html_e( 'Your order', 'woocommerce' ); ?></span></h3>
+			
+			<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
-	<div class="payment-box uk-hidden">
+			<div id="order_review" class="woocommerce-checkout-review-order">
+				<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+			</div>
 
-		<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-
-		<h3 id="order_review_heading" class="uk-heading-line uk-h4 uk-text-bold uk-margin-small-bottom"><span><?php esc_html_e( 'Your order', 'woocommerce' ); ?></span></h3>
-
-		<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
-
-		<div id="order_review" class="woocommerce-checkout-review-order">
-			<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+			<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+		
 		</div>
-
-		<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+	
 	</div>
 
 </form>

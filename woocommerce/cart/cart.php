@@ -147,7 +147,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<div class="coupons-n-cart-actions-n-after-cart-shit">
 
 		<div class="uk-grid-small	product-coupon-shit" uk-grid>
-			<div class="uk-width-1-2">
+			<div class="uk-width-1-1">
 				
 				<?php if ( wc_coupons_enabled() ) { ?>
 					<div class="coupon">
@@ -156,7 +156,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<?php } ?>
 				
 			</div>
-			<div class="uk-width-1-2">
+			<div class="uk-width-1-1">
 				
 				<?php if ( wc_coupons_enabled() ) { ?>
 					<div class="coupon">

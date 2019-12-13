@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?> uk-margin-medium-top uk-width-3-5@m">
+<div class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?> uk-margin-medium-top uk-width-1-1">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
