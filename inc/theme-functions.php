@@ -61,9 +61,35 @@ function organic_theme_enqueue_assets() {
   wp_enqueue_style('organic-theme-css', get_template_directory_uri() . '/assets/css/base.css');
   wp_enqueue_script('organic-theme-js', get_template_directory_uri() . '/assets/js/main/main.js', '', '', false);
   wp_enqueue_style('organic-theme-styles', get_stylesheet_uri());
+  wp_localize_script( 'organic-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+  wp_localize_script( 'organic-theme-js', 'organic_loadmore_params', array(
+    'ajaxurl' => admin_url( 'admin-ajax.php' ),
+    'posts' => json_encode( $wp_query->query_vars ), // everything about your loop is here
+    'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
+    'max_page' => $wp_query->max_num_pages
+  ) );
   
 }
 add_action('wp_enqueue_scripts', 'organic_theme_enqueue_assets'); 
+
+function organic_loadmore_ajax_handler() {
+
+    $context = Timber::get_context();
+    $postargs = json_decode( stripslashes( $_POST['query'] ), true );
+  	$postargs['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+  	$postargs['post_status'] = 'publish';
+    $context['posts'] = Timber::get_posts( $postargs );
+
+    $template = 'load.twig';
+
+    Timber::render( $template, $context );
+
+    die();
+
+}
+add_action('wp_ajax_loadmore', 'organic_loadmore_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmore', 'organic_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
 
 // add custom url paramater key
 function custom_query_vars_filter($vars) {
@@ -123,3 +149,45 @@ function organic_theme_register_required_plugins()
     );
     tgmpa($plugins, $config);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function solaris_loadmore_ajax_handler() {
+
+    $context = Timber::get_context();
+    $postargs = json_decode( stripslashes( $_POST['query'] ), true );
+  	$postargs['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+  	$postargs['post_status'] = 'publish';
+    $context['posts'] = Timber::get_posts( $postargs );
+    $context['options'] = get_fields('options');
+
+    $template = 'load.twig';
+
+    Timber::render( $template, $context );
+
+    die();
+
+}
+add_action('wp_ajax_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}

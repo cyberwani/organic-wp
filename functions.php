@@ -18,9 +18,8 @@ if( class_exists( 'Timber' ) ) {
 }
 
 /**
- * Woo functions
- */
- 
+* Woo stuff
+*/
 function timber_set_product( $post ) {
    global $product;
 
@@ -28,6 +27,7 @@ function timber_set_product( $post ) {
        $product = wc_get_product( $post->ID );
    }
 }
+require get_template_directory() . '/inc/woo-custom.php';
 require get_template_directory() . '/inc/woo-functions.php';
 
 /**

@@ -57,27 +57,23 @@ jQuery( 'body' ).on( 'added_to_cart', function( e, fragments, cart_hash, this_bu
 
 <div id="modal-cart" class="uk-modal-container" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Cart</h2>
+        <h2 class="uk-modal-title">The Cart</h2>
         <div class="uk-child-width-1-2" uk-grid>
           <div>
           product stuff
           </div>
           <div>
-          cart stuff
+            {% do action('custom_mini_cart') %}
           </div>
         </div>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" type="button">Save</button>
+        </p>
     </div>
 </div>
 
-<div id="modal-quickview" class="uk-modal-container" uk-modal>
-  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-    <button class="uk-modal-close-default" type="button" uk-close></button>
-    quickview content
-  </div>
-</div>
-
 {% do action('cart_ajax_result_count') %}
-
 <div class="uk-section uk-section-small" data-template="woo-archive.twig">
   <div class="uk-container uk-container-large">
     <div class="uk-grid-large" uk-grid>
@@ -154,7 +150,7 @@ jQuery( 'body' ).on( 'added_to_cart', function( e, fragments, cart_hash, this_bu
           * @hooked wc_no_products_found - 10
           #}
 
-          <div id="ShopProducts" class="archive-posts uk-margin-bottom">
+          <div id="ShopProducts" class="uk-margin-bottom">
             {% if grid_list == 'list-view' %}
               {% set grid_list_layout_class = 'uk-child-width-1-1@m' %}
             {% elseif grid_list == 'grid-view' or grid_list == '' %}
@@ -185,16 +181,6 @@ jQuery( 'body' ).on( 'added_to_cart', function( e, fragments, cart_hash, this_bu
           <div id="ShopPagination">
             {% do action('woocommerce_after_shop_loop') %}
           </div>
-          
-          <script>
-          var infScroll = new InfiniteScroll( '#ProductGrid', {
-            // options
-            path: '.next',
-            append: '.product',
-            hideNav: '.pagi',
-          });
-          
-          </script>
           
           {% do action('woocommerce_after_main_content') %}
           

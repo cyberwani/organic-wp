@@ -14,3 +14,9 @@ window.UIkit = UIkit;
 
 // You might require or import some other file of yours
 // require ('./ajax-search.js');
+
+require ('./load-more.js');
+
+var InfiniteScroll = require('infinite-scroll');
+
+window.InfiniteScroll = InfiniteScroll;
