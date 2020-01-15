@@ -8,19 +8,11 @@
 // Define paths to Twig templates
 Timber::$dirname = array(
   'views/',
-  'views/archive',
-  'views/base',
-  'views/base/header',
-  'views/base/footer',
-  'views/base/parts',
-  'views/singular',
+  'views/page-templates',
+  'views/partials',
+  'views/partials/header',
   'views/woo',
-  'views/woo/archive',
-  'views/woo/archive/tease',
-  'views/woo/single',
-  'views/woo/single/related',
-  'views/woo/single/upsells',
-
+  'views/woo/partials',
 );
 
 // Define Organic_Theme Child Class

@@ -67,12 +67,22 @@
    // ajax result count
    function cart_ajax_result_count() {
 
-     echo '<div class="header-cart-count">';
+     echo '<span class="header-cart-count">(';
      echo WC()->cart->get_cart_contents_count();
-     echo '</div>';
+     echo ')</span>';
 
    }
    add_action( 'cart_ajax_result_count', 'cart_ajax_result_count' );
+   
+   // ajax result count
+   function cart_ajax_subtotal() {
+
+     echo '<div class="subtotal-cart"><strong>' . esc_html__( 'Subtotal', 'woocommerce' ) . ':</strong>';
+     echo WC()->cart->get_cart_subtotal();
+     echo '</div>';
+
+   }
+   add_action( 'cart_ajax_subtotal', 'cart_ajax_subtotal' );
    
    // custom single product sales flash
    function custom_sales_flash() {
@@ -87,6 +97,7 @@
 
    }
    add_action( 'custom_sales_flash', 'custom_sales_flash' );
+   
 
    
  }

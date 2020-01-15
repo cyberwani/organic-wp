@@ -1,0 +1,207 @@
+{# 
+
+woocommerce_before_main_content(shop-breadcrumbs.twig)
+* @hooked woocommerce_output_content_wrapper - 10 - REMOVED
+* @hooked woocommerce_breadcrumb - 20
+* @hooked WC_Structured_Data::generate_website_data() - 30
+* @HOOKED woocommerce_output_all_notices - 40 - MOVED HERE FROM woocommerce_before_shop_loop
+
+woocommerce_archive_description
+* @hooked woocommerce_taxonomy_archive_description - 10
+* @hooked woocommerce_product_archive_description - 10
+
+woocommerce_before_shop_loop(shop-toolbar.twig)
+* @hooked woocommerce_output_all_notices - 10 - MOVED TO woocommerce_before_main_content
+* @hooked woocommerce_result_count - 20
+* @hooked woocommerce_catalog_ordering - 30 - MOVED TO 10
+
+woocommerce_before_shop_loop_item(loop-products.twig > tease-products.twig)
+* @hooked woocommerce_template_loop_product_link_open - 10 - REMOVED
+
+woocommerce_before_shop_loop_item_title(loop-products.twig > tease-products.twig)
+* @hooked woocommerce_show_product_loop_sale_flash - 10
+* @hooked woocommerce_template_loop_product_thumbnail - 10 - REMOVED: outputting image html using twig instead
+
+woocommerce_shop_loop_item_title(loop-products.twig > tease-products.twig)
+* @hooked woocommerce_template_loop_product_title - 10 - REMOVED: outputting title html using twig instead, weird issue with titles when using default hook
+
+woocommerce_after_shop_loop_item_title(loop-products.twig > tease-products.twig)
+* @hooked woocommerce_template_loop_rating - 5
+* @hooked woocommerce_template_loop_price - 10
+
+woocommerce_after_shop_loop_item(loop-products.twig > tease-products.twig)
+* @hooked woocommerce_template_loop_product_link_close - 5  - REMOVED
+* @hooked woocommerce_template_loop_add_to_cart - 10
+
+woocommerce_no_products_found(loop-products.twig)
+* @hooked wc_no_products_found - 10
+
+woocommerce_after_shop_loop(shop-pagination.twig)
+* @hooked woocommerce_pagination - 10 -  see loop/pagaintion.php, this template renders default theme pagination.twig
+
+woocommerce_after_main_content
+* @hooked woocommerce_output_content_wrapper_end - 10 - REMOVED
+
+#}
+
+{% extends 'base.twig' %}
+{% block content %}
+
+<script>
+jQuery.cachedScript = function( url, options ) {
+
+  // Allow user to set any option except for dataType, cache, and url
+  options = jQuery.extend( options || {}, {
+    dataType: "script",
+    cache: true,
+    url: url
+  });
+
+  // Use $.ajax() since it is more flexible than $.getScript
+  // Return the jqXHR object so we can chain callbacks
+  return jQuery.ajax( options );
+};
+
+// quickview ajax call
+jQuery(document).on('click', '.quickview', (function(){
+
+  var query = jQuery(this).closest('.product').data('productId');
+  var $results = jQuery('.quickview-content');
+  var $loader = jQuery('#loader');
+  var modal = UIkit.modal("#modal-quickview");
+  
+  var $singleproductjs 
+  
+  jQuery.ajaxSetup({
+    cache: true
+  });
+
+  jQuery.ajax({
+     type: 'post',
+     url: quickview.ajaxurl,
+     cache: true,
+     data: {
+         action: 'quickview',
+         query: query
+     },
+     beforeSend: function() {
+       // $loader.removeClass('uk-hidden');
+     },
+     success: function(response) {
+
+      $results.html(response);
+
+      // jQuery.cachedScript( "/wp-content/plugins/woocommerce/assets/js/frontend/single-product.min.js" ).done(function( script, textStatus ) {
+      //   console.log( textStatus );
+      // });
+
+      jQuery.getScript("/wp-content/plugins/woocommerce/assets/js/photoswipe/photoswipe.min.js");
+      jQuery.getScript("/wp-content/plugins/woocommerce/assets/js/photoswipe/photoswipe-ui-default.min.js");
+      jQuery.getScript("/wp-content/plugins/woocommerce/assets/js/flexslider/jquery.flexslider.min.js");
+      jQuery.getScript("/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart-variation.min.js");
+      jQuery.getScript("/wp-content/plugins/woocommerce/assets/js/frontend/single-product.min.js");
+      // $loader.addClass('uk-hidden');
+      
+modal.show();
+      
+     },
+  });
+
+  return false;
+
+}));
+
+</script>
+
+{% if grid_list == 'list-view' %}
+  {% set list_active_class = 'uk-active' %}
+{% else %}
+  {% set list_active_class = 'not-active' %}
+{% endif %}
+{% if grid_list == 'grid-view' %}
+  {% set grid_active_class = 'uk-active' %}
+{% else %}
+  {% set grid_active_class = 'not-active' %}
+{% endif %}
+
+{% if grid_list == 'list-view' %}
+  {% set grid_list_layout_class = 'uk-child-width-1-1@m' %}
+{% elseif grid_list == 'grid-view' or grid_list == '' %}
+  {% set grid_list_layout_class = 'uk-child-width-1-4@m' %}
+{% endif %}
+
+{% if grid_list == 'list-view' %}
+  {% set tease_template = 'tease-product-list.twig' %}
+{% elseif grid_list == 'grid-view' or grid_list == '' %}
+  {% set tease_template = 'tease-product.twig' %}
+{% endif %}
+
+<!-- <div class="quickview-content">
+</div>
+<div id="loader" class="uk-hidden">
+  <img data-src="/wp-content/themes/organicwp-theme/assets/images/spinner.gif" width="200" height="200" alt="" uk-img>
+</div> -->
+
+<div class="uk-section uk-section-small" data-template="woo-archive.twig">
+  <div class="uk-container uk-container-large">
+    <div class="uk-grid-large" uk-grid>
+      {% include 'sidebar-shop.twig' %}
+      <div id="MainProductArchive" class="uk-article uk-width-5-6@m">
+        <div>
+          
+          <div id="ShopBreadsNotices" class="uk-margin-bottom">
+            {% do action('woocommerce_before_main_content') %}
+          </div>
+          
+          <h1 id="ShopArchiveTitle" class="uk-article-title woocommerce-products-header__title page-title">
+            {{ title }}
+          </h1>
+        
+          <div id="ShopArchiveDescription" class="uk-margin-bottom">
+            {% do action('woocommerce_archive_description') %}
+          </div>
+          
+          <nav id="ShopToolbar" class="uk-navbar-container uk-margin" uk-navbar>
+            <div class="uk-navbar-left">
+              <div class="uk-navbar-item">
+                {% do action('woocommerce_before_shop_loop') %}
+              </div>
+            </div>
+            
+            <div class="uk-navbar-right">
+              <ul class="uk-navbar-nav">
+                <li><a href="{{ function ('add_query_arg', 'results', '12', '') }}">12</a></li>
+                <li><a href="{{ function ('add_query_arg', 'results', '16', '') }}">16</a></li>
+                <li><a href="{{ function ('add_query_arg', 'results', '20', '') }}">20</a></li>
+              </ul>
+              <div id="GridList" class="uk-navbar-item">
+                <a href="{{ function ('add_query_arg', 'grid_list', 'grid-view', '') }}" class="grid-toggle uk-button uk-button-default uk-button-small uk-margin-small-right {{ grid_active_class }}"><span uk-icon="grid"></span></a>
+                <a href="{{ function ('add_query_arg', 'grid_list', 'list-view', '') }}" class="list-toggle uk-button uk-button-default uk-button-small {{ list_active_class }}"><span uk-icon="icon: list"></span></a>
+              </div>
+            </div>
+          </nav>
+
+          <div id="ShopProducts" class="archive-posts uk-margin-bottom">
+            <div id="ProductGrid" class="uk-child-width-1-1@s {{ grid_list_layout_class }}" data-infinite-scroll='{ "path": ".next", "append": ".product", "hideNav": ".pagi", "history": false }' uk-grid="masonry: true">
+              {% for post in products %}
+                {% include [tease_template] %}
+              {% endfor %}
+              {% if products is empty %}
+                {% do action('woocommerce_no_products_found') %}
+              {% endif %}
+            </div>
+          </div>
+
+          <div id="ShopPagination">
+            {% do action('woocommerce_after_shop_loop') %}
+          </div>
+          
+          {% do action('woocommerce_after_main_content') %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock  %}

@@ -84,17 +84,22 @@
       left: 30px;
       z-index: 1;
     }
+    #ShopToolbar .uk-navbar-item, #ShopToolbar .uk-navbar-nav>li>a, #ShopToolbar .uk-navbar-toggle {
+        min-height: 60px;
+    }
   </style>
 </head>
 <!-- body classes go here -->
 <body class="{{ body_class }}" data-template="base.twig">
   <!-- main site wrapper -->
+  
   <div id="SiteWrapper" class="site-wrapper">
     <!-- header -->
     {% block header %}
-      {% include 'header.twig' %}
+      {#  % include 'header.twig' % #}
     {% endblock %}
     <!-- /header -->
+    
     <!-- content -->
     <div id="MainContent">
       {% block content %}
@@ -102,6 +107,41 @@
       {% endblock %}
     </div>
     <!-- /content -->
+    <div id="modal-cart" class="" uk-modal>
+        <div class="uk-modal-dialog uk-margin-auto-vertical">
+          <button class="uk-modal-close-default" type="button" uk-close></button>
+          <div class="uk-modal-header">
+              <h2 class="uk-modal-title">Modal Title</h2>
+          </div>
+          <div class="uk-modal-body uk-child-width-1-2 uk-grid-divider" uk-grid>
+            <div>
+              <div class="im"></div>
+              <div class="tit"></div>
+              <div class="pri"></div>
+            </div>
+            <div>
+            {% do action('cart_ajax_result_count') %}
+            {% do action('cart_ajax_subtotal') %}
+            </div>
+          </div>
+          <div class="uk-modal-footer ">
+            <div>
+              <a href="/cart" class="uk-button uk-button-default uk-width-auto">Go to Cart {% do action('cart_ajax_result_count') %}</a>
+              <a href="/checkout" class="uk-button uk-button-primary uk-width-auto">Checkout</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div id="modal-quickview" class="uk-modal-full" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="quickview-content">
+        </div>
+        <div id="loader" class="uk-hidden">
+          <img data-src="/wp-content/themes/organicwp-theme/assets/images/spinner.gif" width="200" height="200" alt="" uk-img>
+        </div>
+      </div>
+    </div>
     <!-- footer -->
     {% block footer %}
       {% include 'footer.twig' %}
@@ -115,3 +155,4 @@
 </body>
 <!-- /body -->
 </html>
+

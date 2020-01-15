@@ -19,14 +19,13 @@ woocommerce_after_shop_loop_item.
 * @hooked woocommerce_template_loop_add_to_cart - 10
 
 #}
-
-<div id="ProductItem" {{ fn('post_class', ['entry', 'grid-item'] ) }}>
-  {{ fn('timber_set_product', post) }}
+{{ fn('timber_set_product', post) }}
+<div id="ProductItem{{ post.id }}" class="entry grid-item {{ post.class }}" data-product-id="{{ post.id }}">
   <div class="uk-card uk-card-default">
      {% do action('woocommerce_before_shop_loop_item') %}
      <div id="ProductMedia" class="media-figure uk-card-media-top">
-        <a href="{{ post.link }}">
-          <img data-src="{{ post.thumbnail.src('organic-theme-woo-archive-grid') }}" alt="{{ post.thumbnail.alt }}" uk-img>
+        <a class="single-product-image-link" href="{{ post.link }}">
+          <img data-src="{{ post.thumbnail.src('organic-theme-woo-archive-grid') }}" class="single-product-image" alt="{{ post.thumbnail.alt }}" uk-img>
         </a>
         {% do action('woocommerce_before_shop_loop_item_title') %}
      </div>
@@ -43,7 +42,7 @@ woocommerce_after_shop_loop_item.
         <div id="LoopAddToCart" class="uk-child-width-1-2 uk-grid-small" uk-grid>
            {% do action( 'woocommerce_after_shop_loop_item' ) %}
            <div>
-             <a class="uk-button uk-button-default uk-width-1-1" href="#modal-quickview" uk-toggle>Quick View</a>
+             <a class="uk-button uk-button-default uk-width-1-1 quickview">Quick View</a>
            </div>
         </div>
      </div>

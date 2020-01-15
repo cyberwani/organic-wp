@@ -6,8 +6,7 @@
  */
 
 $context = Timber::get_context();
-$post = Timber::query_post();
-$context['post'] = $post;
+$context['post'] = new Timber\Post();
 $context['pagination'] = Timber::get_pagination();
 $context['paged'] = $paged;
 

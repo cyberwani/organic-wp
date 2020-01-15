@@ -1,0 +1,18 @@
+<!-- the Product -->
+<div id="TheProduct" itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}" uk-grid>
+  
+  <!-- the images -->
+  <div class="entry-images uk-width-1-2@m">
+    <div>
+      {% do action('woocommerce_before_single_product_summary') %}
+    </div>
+  </div>
+  
+  <!-- woocommerce_single_product_summary - @hooked woocommerce_template_single_title - 5, woocommerce_template_single_rating - 10, woocommerce_template_single_price - 10, woocommerce_template_single_excerpt - 20, woocommerce_template_single_add_to_cart - 30, woocommerce_template_single_meta - 40, woocommerce_template_single_sharing - 50, WC_Structured_Data::generate_product_data() - 60 -->
+  <div class="uk-width-1-2">
+    {% do action('woocommerce_single_product_summary') %}
+  </div>
+  
+  <meta itemprop="url" content="{{ post.link }}" />
+  
+</div>

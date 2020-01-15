@@ -61,7 +61,7 @@ function organic_theme_enqueue_assets() {
   wp_enqueue_style('organic-theme-css', get_template_directory_uri() . '/assets/css/base.css');
   wp_enqueue_script('organic-theme-js', get_template_directory_uri() . '/assets/js/main/main.js', '', '', false);
   wp_enqueue_style('organic-theme-styles', get_stylesheet_uri());
-  wp_localize_script( 'organic-theme-js', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+  wp_localize_script( 'organic-theme-js', 'quickview', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
   wp_localize_script( 'organic-theme-js', 'organic_loadmore_params', array(
     'ajaxurl' => admin_url( 'admin-ajax.php' ),
     'posts' => json_encode( $wp_query->query_vars ), // everything about your loop is here
@@ -97,6 +97,25 @@ function custom_query_vars_filter($vars) {
   return $vars;
 }
 add_filter( 'query_vars', 'custom_query_vars_filter' );
+
+
+
+// add another custom url paramater key
+function custom_query_vars_results_filter($vars) {
+  $vars[] .= 'results';
+  return $vars;
+}
+add_filter( 'query_vars', 'custom_query_vars_results_filter' );
+
+add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
+function new_loop_shop_per_page( $cols ) {
+  
+  $cols = get_query_var('results');
+  return $cols;
+  
+  var_dump($cols);
+  
+}
 
 // regisers custom widget
 function organic_custom_uikit_widgets_init() {
@@ -173,21 +192,67 @@ function organic_theme_register_required_plugins()
 
 
 
-function solaris_loadmore_ajax_handler() {
+function organic_quickview_ajax_handler() {
 
-    $context = Timber::get_context();
-    $postargs = json_decode( stripslashes( $_POST['query'] ), true );
-  	$postargs['paged'] = $_POST['page'] + 1; // we need next page to be loaded
-  	$postargs['post_status'] = 'publish';
-    $context['posts'] = Timber::get_posts( $postargs );
-    $context['options'] = get_fields('options');
+  global $product;
+  $query = $_POST['query'];
+  $context['post']    = Timber::query_post( $query );
+  
+wp_reset_postdata();
 
-    $template = 'load.twig';
-
-    Timber::render( $template, $context );
-
-    die();
-
+  Timber::render(  'quickview.twig' , $context );
+  
+die();
+  
 }
-add_action('wp_ajax_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_{action}
-add_action('wp_ajax_nopriv_loadmore', 'solaris_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+add_action('wp_ajax_quickview', 'organic_quickview_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_quickview', 'organic_quickview_ajax_handler'); // wp_ajax_nopriv_{action}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
+add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
+        
+function woocommerce_ajax_add_to_cart() {
+
+            $product_id = apply_filters('woocommerce_add_to_cart_product_id', absint($_POST['product_id']));
+            $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
+            $variation_id = absint($_POST['variation_id']);
+            $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
+            $product_status = get_post_status($product_id);
+
+            if ($passed_validation && WC()->cart->add_to_cart($product_id, $quantity, $variation_id) && 'publish' === $product_status) {
+
+                do_action('woocommerce_ajax_added_to_cart', $product_id);
+
+                if ('yes' === get_option('woocommerce_cart_redirect_after_add')) {
+                    wc_add_to_cart_message(array($product_id => $quantity), true);
+                }
+
+                WC_AJAX :: get_refreshed_fragments();
+            } else {
+
+                $data = array(
+                    'error' => true,
+                    'product_url' => apply_filters('woocommerce_cart_redirect_after_error', get_permalink($product_id), $product_id));
+
+                echo wp_send_json($data);
+            }
+
+            wp_die();
+        }

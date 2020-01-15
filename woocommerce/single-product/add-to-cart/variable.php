@@ -31,7 +31,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 	<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
 		<p class="stock out-of-stock"><?php echo esc_html( apply_filters( 'woocommerce_out_of_stock_message', __( 'This product is currently out of stock and unavailable.', 'woocommerce' ) ) ); ?></p>
 	<?php else : ?>
-		<table class="variations" cellspacing="0">
+		<table class="variations uk-table uk-table-middle uk-table-small" cellspacing="0">
 			<tbody>
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 					<tr>
@@ -42,9 +42,9 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 									'options'   => $options,
 									'attribute' => $attribute_name,
 									'product'   => $product,
-								) );
-								echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
-							?>
+									'class'					=> 'uk-select uk-width-3-4',
+								) ); ?>
+								<?php echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#" uk-icon="heart">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';?>
 						</td>
 					</tr>
 				<?php endforeach; ?>

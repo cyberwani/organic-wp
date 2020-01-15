@@ -8,6 +8,16 @@
 // if woocommerce is activated, do this stuff, or not
  if ( class_exists( 'WooCommerce' ) ) {
    
+   
+   
+   
+   
+   add_action( 'woocommerce_reset_variations_link' , 'sd_change_clear_text', 15 );
+   function sd_change_clear_text() {
+      echo '<a class="reset_variations" href="#"><span uk-icon="refresh"></span></a>';
+    
+   }
+   
    // remove woo scripts and styles selectively
    function theme_woo_script_styles() {
    	 remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
@@ -26,6 +36,8 @@
      // wp_dequeue_script( 'wc-lost-password' );
      // wp_dequeue_script( 'wc_price_slider' );
      // wp_dequeue_script( 'wc-single-product' );
+     // wp_dequeue_script( 'flexslider' );
+     // wp_dequeue_script( 'zoom' );
      // wp_dequeue_script( 'wc-add-to-cart' );
      // wp_dequeue_script( 'wc-cart-fragments' );
      // wp_dequeue_script( 'wc-credit-card-form' );
@@ -42,8 +54,40 @@
      // wp_dequeue_script( 'jquery-payment' );
      // wp_dequeue_script( 'fancybox' );
      // wp_dequeue_script( 'jqueryui' );
+     
+     
+     
    }
    add_action( 'wp_enqueue_scripts', 'theme_woo_script_styles', 99 );
+   
+   add_action( 'wp_enqueue_scripts', 'gallery_scripts', 20 );
+
+function gallery_scripts() {
+    if ( is_archive() || is_product() ) {
+        if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) { 
+            wp_enqueue_script( 'zoom' );
+        }
+        if ( current_theme_supports( 'wc-product-gallery-slider' ) ) {
+            wp_enqueue_script( 'flexslider' );
+        }
+        if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
+            wp_enqueue_script( 'photoswipe-ui-default' );
+            wp_enqueue_style( 'photoswipe-default-skin' );
+            add_action( 'wp_footer', 'woocommerce_photoswipe' );
+        }
+        wp_enqueue_script( 'wc-add-to-cart-variation' );
+        wp_enqueue_script( 'wc-single-product' );
+        
+    }
+
+}
+   
+   
+   
+   
+   
+   
+   
    
    /**
     *  moving / removing woocommerce actions
@@ -88,10 +132,21 @@
     
     // filters the results count for ajax
     function iconic_cart_count_fragments( $fragments ) {
-       $fragments['div.header-cart-count'] = '<div class="header-cart-count">' . WC()->cart->get_cart_contents_count() . '</div>';
+       $fragments['span.header-cart-count'] = '<span class="header-cart-count">(' . WC()->cart->get_cart_contents_count() . ')</span>';
        return $fragments;
     }
     add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
+    
+    
+    
+    // filters the results count for ajax
+    function iconic_subtotal_fragments( $fragments ) {
+       $fragments['div.subtotal-cart'] = '<div class="subtotal-cart"><strong>' . esc_html__( 'Subtotal', 'woocommerce' ) . ':</strong>' . WC()->cart->get_cart_subtotal() . '</div>';
+       return $fragments;
+    }
+    add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_subtotal_fragments', 10, 1 );
+    
+
    
    // adding theme classes to woo checkout form elements via woocommerce_checkout_fields filter
    function theme_checkout_fields( $fields ) {
